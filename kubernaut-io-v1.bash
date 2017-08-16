@@ -4,6 +4,9 @@ set -euxo pipefail
 # Kubelet wants the full hostname
 hostname $(hostname -f)
 
+# Kubeadm will fail if this is not 0 and sometimes it is not 0... for unknown reasons.
+echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables
+
 # Query some necessary AWS information
 public_hostname=$(ec2-metadata --public-hostname | sed 's/public-hostname: //' | tr -d '\n')
 instance_id=$(ec2-metadata --instance-id | sed 's/instance-id: //' | tr -d '\n')
