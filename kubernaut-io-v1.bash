@@ -4,6 +4,7 @@ set -euxo pipefail
 # Kubeadm will fail if this is not loaded because /proc/sys/net/bridge/bridge-nf-call-iptables needs to be "1"
 # https://serverfault.com/questions/697942/centos-6-elrepo-kernel-bridge-issues
 modprobe br_netfilter
+echo "1" > /proc/sys/net/bridge/bridge-nf-call-iptables
 
 # Kubelet wants the full hostname
 hostname $(hostname -f)
