@@ -9,7 +9,7 @@ public_hostname=$(ec2-metadata --public-hostname | sed 's/public-hostname: //' |
 instance_id=$(ec2-metadata --instance-id | sed 's/instance-id: //' | tr -d '\n')
 availability_zone=$(ec2-metadata --availability-zone | sed 's/placement: //' | tr -d '\n')
 
-aws autoscaling set-instance-health --instance-id ${instance_id} –-health-status Unhealthy
+aws autoscaling set-instance-health --instance-id ${instance_id} --health-status Unhealthy
 
 export AWS_DEFAULT_REGION="${availability_zone::-1}"
 
@@ -93,7 +93,7 @@ aws ec2 create-tags \
     --resources ${instance_id} \
     --tags Key=io.kubernaut/Status,Value=unclaimed
 
-aws autoscaling set-instance-health --instance-id ${instance_id} –-health-status Healthy
+aws autoscaling set-instance-health --instance-id ${instance_id} --health-status Healthy
 
 # Indicate we are registered
 printf "%s" "1" > /etc/kubernaut/registered
