@@ -10,7 +10,6 @@ instance_id=$(ec2-metadata --instance-id | sed 's/instance-id: //' | tr -d '\n')
 availability_zone=$(ec2-metadata --availability-zone | sed 's/placement: //' | tr -d '\n')
 
 export AWS_DEFAULT_REGION="${availability_zone::-1}"
-aws autoscaling set-instance-health --instance-id ${instance_id} --health-status Unhealthy
 
 kubernaut_r53_zone_id=$(aws route53 list-hosted-zones --query 'HostedZones[?Name==`kubernaut.io.`].Id' --output text | sed 's|/hostedzone/||')
 CLUSTER_DNS_NAME="${instance_id}.kubernaut.io"
@@ -91,8 +90,6 @@ aws s3api put-object \
 aws ec2 create-tags \
     --resources ${instance_id} \
     --tags Key=io.kubernaut/Status,Value=unclaimed
-
-aws autoscaling set-instance-health --instance-id ${instance_id} --health-status Healthy
 
 # Indicate we are registered
 printf "%s" "1" > /etc/kubernaut/registered
