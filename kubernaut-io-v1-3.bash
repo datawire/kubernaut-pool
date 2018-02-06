@@ -49,7 +49,6 @@ sysctl -a
 
 kubeadm reset
 kubeadm init --config /tmp/kubeadm.yaml
-rm /tmp/kubeadm.yaml
 
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
