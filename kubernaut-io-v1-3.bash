@@ -36,6 +36,9 @@ token: ${KUBEADM_TOKEN}
 tokenTTL: 0s
 cloudProvider: aws
 kubernetesVersion: v${KUBERNETES_VERSION}
+api:
+  advertiseAddress: ${CLUSTER_DNS_NAME}
+  bindPort: 6443
 apiServerCertSANs:
 - ${CLUSTER_DNS_NAME}
 EOF
