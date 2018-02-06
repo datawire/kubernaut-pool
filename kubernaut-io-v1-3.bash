@@ -33,7 +33,7 @@ cat >/tmp/kubeadm.yaml <<EOF
 apiVersion: kubeadm.k8s.io/v1alpha1
 kind: MasterConfiguration
 token: ${KUBEADM_TOKEN}
-tokenTTL: 0
+tokenTTL: 0s
 cloudProvider: aws
 kubernetesVersion: v${KUBERNETES_VERSION}
 apiServerCertSANs:
