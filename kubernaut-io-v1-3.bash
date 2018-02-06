@@ -55,7 +55,6 @@ export KUBECONFIG=/etc/kubernetes/admin.conf
 # Temporary workaround for: https://github.com/datawire/kubernaut-backend/issues/3
 set +e
 kubectl apply -f https://raw.githubusercontent.com/datawire/kubernaut-standalone/master/etc/calico/calico.yaml
-kubectl apply -f https://raw.githubusercontent.com/datawire/kubernaut-standalone/master/etc/calico/calico.yaml
 set -e
 
 # Allow containers to run on the Kubernetes Master
